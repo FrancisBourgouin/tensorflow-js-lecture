@@ -1,0 +1,12 @@
+import React from 'react';
+
+export const photoCredits = [
+  <span>Photo by <a href="https://unsplash.com/@alivka?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Alice Butenko</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>,
+  <span>Photo by <a href="https://unsplash.com/@pechka?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Dima Pechurin</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>,
+  <span>Photo by <a href="https://unsplash.com/@valentinlacoste?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Valentin Lacoste</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>,
+  <span>Photo by <a href="https://unsplash.com/@ichiroku?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Alex Kim</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>,
+  <span>Photo by <a href="https://unsplash.com/@limpido?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Enrico Mantegazza</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>,
+  <span>Photo by <a href="https://unsplash.com/@dizzcoverie?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Izz R</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>,
+  <span>Photo by <a href="https://unsplash.com/@xviiizz?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">XVIIIZZ</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>,
+  <span>Photo by <a href="https://unsplash.com/@8moments?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Simon Berger</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+]
