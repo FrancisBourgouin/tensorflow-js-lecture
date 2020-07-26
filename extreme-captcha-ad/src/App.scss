@@ -28,11 +28,16 @@ body{
     font-size:1.2em;
   }
 }
-@media screen and (max-width:1940px){
-  body{font-size:16px;}
+@media screen and (max-width:1200px){
+  body{font-size:13px;}
   .Stamp{
     font-size:1.2em;
+    width:120px !important;
+    height:120px !important;
   }
+  .tf_stamp{top:10% !important}
+  .html5_stamp{top:60% !important;left:10% !important}
+  .css_stamp{top:70% !important; right:15% !important}
 }
 
 
