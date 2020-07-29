@@ -145,7 +145,7 @@ function App() {
   return (
     <div className="App">
       <h1>SHOW ME THE FINGERS! <span>CAPTCHA edition</span></h1>
-      <h2>Put your fingers up following the sequence of numbers</h2>
+      <h2>Once the model is loaded, click on the video stream and put your fingers up following the sequence of numbers</h2>
       <div className="video-feed" onClick={checkSequence}>
         <video ref={webcamFeed} autoPlay />
         {loadState.model && <h2 className="current-number">{currentNumber}</h2>}
