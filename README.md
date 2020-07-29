@@ -15,9 +15,4 @@ Link: https://finger-captcha.surge.sh
 ### Nose Captcha
 Tracks your nose and asks for a sequence of yes / no movements
 
-Link:
-
-### Jumping Jack
-Asks you to do a jumping jack, tracks initial position and final pose
-
-Link:
+Link: https://nose-captcha.surge.sh
