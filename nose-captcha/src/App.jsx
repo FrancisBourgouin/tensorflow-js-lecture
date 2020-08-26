@@ -144,6 +144,7 @@ function App() {
           <p className={validationStart === 3 ? 'pending' : ''}>Vertical</p>
         </div>
       </section>
+      <h3>{sequence.user.map(mvmnt => `${mvmnt} `)}</h3>
 
       {authorized && <p className="result success">ACCESS GRANTED</p>}
       {authorized === false && <p className="result fail">ACCESS DENIED, PLEASE TRY AGAIN</p>}

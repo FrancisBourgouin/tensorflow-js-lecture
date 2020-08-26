@@ -10,13 +10,13 @@ import * as speechCommands from '@tensorflow-models/speech-commands'
 
 
 
-const URL = "http://localhost:3000/my_model/";
+const URL = "http://localhost:3000/base_model/";
 
 function App() {
   const [bassDrum, setBassDrum] = useState()
   const [snareDrum, setSnareDrum] = useState()
   const [recognizerModel, setRecognizerModel] = useState()
-  const [sequence, setSequence] = useState([null, "bass", "bass", "snare", null, "snare", null, "bass", "bass", "snare", "bass"])
+  const [sequence, setSequence] = useState([])
 
   async function createModel() {
     const checkpointURL = URL + "model.json"; // model topology
@@ -40,51 +40,36 @@ function App() {
     setRecognizerModel(recognizer)
   }
 
-  const listen = async () => {
-    const currentSequence = []
-    const classLabels = recognizerModel.wordLabels(); // get class labels
-    console.log(classLabels)
+  const listen = () => {
+    let bgNoise = 0
+    let bassNoise = 0
+    let snareNoise = 0
     recognizerModel.listen(result => {
       const scores = result.scores;
-      // console.log(scores, result)
-      const bgNoiseLabel = classLabels[0]
-      const clapNoiseLabel = classLabels[1]
-      const snapNoiseLabel = classLabels[2]
 
-      const bgNoise = scores[0]
-      const clapNoise = scores[1]
-      const snapNoise = scores[2]
+      bgNoise = scores[0]
+      bassNoise = scores[1]
+      snareNoise = scores[2]
 
-      const noises = {}
-      classLabels.forEach((label, index) => {
-        noises[label] = scores[index]
-      })
-      console.log(noises)
-      if (clapNoise > 0.6) {
-        currentSequence.push('bass')
-      }
-      else if (snapNoise > 0.6) {
-        currentSequence.push('snare')
-      }
-      else {
-        currentSequence.push('bg')
-      }
-    },
-
-      {
-        includeSpectrogram: true, // in case listen should return result.spectrogram
-        probabilityThreshold: 0.75,
-        invokeCallbackOnNoiseAndUnknown: true,
-        overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
-      });
-
-    // Stop the recognition in 5 seconds.
+      console.log(scores)
+    })
     setTimeout(() => {
       recognizerModel.stopListening()
-      console.log(currentSequence)
-      setSequence(currentSequence)
-    }, 10000);
+      console.log(bgNoise, bassNoise, snareNoise)
+      let output = ""
+      if (snareNoise > bassNoise && snareNoise > bgNoise) {
+        output = "snare"
+      }
+      else if (bassNoise > snareNoise && bassNoise > bgNoise) {
+        output = "bass"
+      }
+      else {
+        output = "bg"
+      }
+      setSequence(prev => [...prev, output])
+    }, 1500)
   }
+
 
   useEffect(() => {
     init()
@@ -119,15 +104,30 @@ function App() {
         if (instrument === "snare") {
           snareDrum.play()
         }
-      }, 150 * index)
+      }, 300 * index)
     })
+  }
+
+  const removeLast = () => {
+    const updatedSequence = [...sequence]
+    updatedSequence.pop()
+    setSequence(updatedSequence)
   }
   return (
     <div className="App" >
-      <button onClick={() => bassDrum?.play()}>CLICK ME</button>
-      <button onClick={() => snareDrum?.play()}>CLICK ME</button>
-      <button onClick={() => listen()}>NAVI: LISTEN</button>
-      <button onClick={play}>PLAY</button>
+      <h1>🎵🎶🎵 Voice to drum track ! 🎶🎵🎶</h1>
+      <section>
+        <button onClick={() => bassDrum?.play()}>🥁 Bass Drum 🎵</button>
+        <button onClick={() => snareDrum?.play()}>🎵 Snare Drum 🥁</button>
+      </section>
+      <h3>
+        🎼({sequence.length % 4 + 1} / 4) : {sequence.map(sound => <span>{sound}</span>)}
+      </h3>
+      <section>
+        <button onClick={listen}>👂 & Add</button>
+        <button onClick={removeLast}>Remove last 🥁</button>
+        <button onClick={play}>PLAY</button>
+      </section>
     </div>
   );
 }
