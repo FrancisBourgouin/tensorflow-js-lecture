@@ -30,7 +30,6 @@ function App() {
 
   const [faceRecognitionModel, setFaceRecognitionModel] = useState(null)
   const [loadState, setLoadState] = useState({ webcam: false, model: false })
-  const [scanResult, setScanResult] = useState(null)
 
   // Auth mecanism
   const [sequence, setSequence] = useState({ input: ['Vertical', 'Horizontal', 'Vertical'], user: [] })
@@ -62,9 +61,10 @@ function App() {
       const predictions = await faceRecognitionModel.estimateFaces(webcamFeed.current);
 
       if (predictions.length > 0) {
-        const nosePositionX = predictions[0].landmarks[3][0]
-        const nosePositionY = predictions[0].landmarks[3][1]
 
+        const nosePositionX = predictions[0].landmarks[2][0]
+        const nosePositionY = predictions[0].landmarks[2][1]
+        console.log(`Your nose is at position X: ${nosePositionX} Y: ${nosePositionY}`)
         // console.log(nosePositionX, nosePositionY, currentMovementX.current, currentMovementY.current)
         currentMovementX.current.min = !currentMovementX.current.min || currentMovementX.current.min > nosePositionX ? nosePositionX : currentMovementX.current.min
         currentMovementX.current.max = !currentMovementX.current.max || currentMovementX.current.max < nosePositionX ? nosePositionX : currentMovementX.current.max

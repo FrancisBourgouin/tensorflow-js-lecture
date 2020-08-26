@@ -13,6 +13,8 @@ function App() {
   const [sequence, setSequence] = useState({ input: [5, 4, 3], user: [] })
   const [authorized, setAuthorized] = useState(null)
   const [validationStart, setValidationStart] = useState(0)
+
+
   const loadWebcamAndModel = async () => {
     if (navigator.mediaDevices.getUserMedia) {
       try {
