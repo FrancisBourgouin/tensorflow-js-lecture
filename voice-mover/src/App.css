@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 100px;
+  pointer-events: none;
+  position: absolute;
+  transform:translate(-50%, -50%)
+}
